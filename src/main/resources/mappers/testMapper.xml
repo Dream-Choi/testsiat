@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.siat.testsiat.test.dao.TestMapper">
+    <insert id="insertRow"
+        parameterType="TodoRequestDTO">
+        <selectKey keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+            SELECT JDBC_SEQ.NEXTVAL FROM DUAL
+        </selectKey>
+        INSERT INTO JDBC_TODO_TBL(SEQ, TITLE, CONTENT, STATUS, PRIORITY) 
+        VALUES (JDBC_SEQ.NEXTVAL,#{title}, #{content}, #{status}, #{priority})
+    </insert>
+     
+    <select id="selectListRow" resultType="TodoResponseDTO">
+    
+        SELECT SEQ, TITLE, CONTENT, TO_CHAR(STARTDATE,'YY\"년\" MM\"월\" DD\"일\"') as STARTDATE , STATUS, ENDDATE, PRIORITY 
+        FROM JDBC_TODO_TBL
+    </select>
+    
+    <update id="updateRow" parameterType="java.util.Map">
+        UPDATE JDBC_TODO_TBL SET TITLE=#{title}, CONTENT=#{content}, STATUS=#{status}, PRIORITY=#{priority} WHERE SEQ=#{seq}
+    </update>
+    
+    <delete id="deleteRow" parameterType="java.lang.Integer">
+        DELETE FROM JDBC_TODO_TBL WHERE SEQ=#{seq}
+    </delete>
+    <select id="selectRow" parameterType="java.lang.Integer" resultType="TodoResponseDTO">
+        SELECT SEQ, TITLE, CONTENT, TO_CHAR(STARTDATE,'YY\"년\" MM\"월\" DD\"일\"') as STARTDATE , STATUS, ENDDATE, PRIORITY 
+        FROM JDBC_TODO_TBL WHERE SEQ=#{seq}
+    </select>
+</mapper>
