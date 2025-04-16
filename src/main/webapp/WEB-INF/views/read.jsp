@@ -13,7 +13,7 @@
 	<form action="/todo/update" method="post">
 		<input type="text" name="seq" value="${read.seq}" readonly><br>
         <input type="text" name="title" value="${read.title}"><br>
-        <textarea name="content" rows="5" cols="50">${read.content}</textarea><br>
+        <textarea name="content" rows="5" >${read.content}</textarea><br>
         <input type="text" name="startdate" value="${read.startDate}" readonly><br>
         <select name="status" required>
     		<option value="Y" ${read.status == 'Y' ? 'selected' : ''}>완료</option>

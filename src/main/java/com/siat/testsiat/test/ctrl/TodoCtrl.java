@@ -50,7 +50,7 @@ public class TodoCtrl {
     }
     // Endpoint URL : http://localhost:8088/todo/read?seq=1
     @GetMapping("/read")
-    public String read(@RequestParam int seq, Model model) {
+    public String read(@RequestParam("seq") int seq, Model model) {
         System.out.println("debug Todo ctrl /read: " + seq);
         TodoResponseDTO response = Service.selectService(seq);
         model.addAttribute("read", response);

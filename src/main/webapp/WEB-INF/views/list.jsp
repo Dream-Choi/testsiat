@@ -27,8 +27,8 @@
     <tbody>
     <c:forEach var="dto" items="${list}">
       <tr>
-        <%--<td><a href="./read?seq=${dto.seq}">${dto.title}</a></td>--%>
-        <td><a href="./view/${dto.seq}">${dto.title}</a></td>
+        <td><a href="./read?seq=${dto.seq}">${dto.title}</a></td>
+        <%--<td><a href="./view/${dto.seq}">${dto.title}</a></td>--%>
         <td>${dto.status}</td>
         <td>${dto.priority}</td>
       </tr>
