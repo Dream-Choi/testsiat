@@ -37,7 +37,7 @@ public class TodoCtrl {
         System.out.println("debug Todo ctrl /registerForm");
         return "register";
     }
-    
+    // Endpoint URL : http://localhost:8088/todo/insert
     @PostMapping("/insert")
     public String insert(TodoRequestDTO params) {
         System.out.println("debug Todo ctrl /insert: " + params);
@@ -75,6 +75,7 @@ public class TodoCtrl {
             return "xxxxx";
         }
     }
+    // Endpoint URL : http://localhost:8088/todo/update
     @PostMapping("/update")
     public String update(@RequestParam String title,
                          @RequestParam String content,
