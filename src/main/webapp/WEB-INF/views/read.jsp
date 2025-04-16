@@ -10,7 +10,7 @@
 <body>
     <h2>${UserSession.name}님</h2>
     <c:if test="${read != null}">
-	<form action="../../todo/update" method="post">
+	<form action="/todo/update" method="post">
 		<input type="text" name="seq" value="${read.seq}" readonly><br>
         <input type="text" name="title" value="${read.title}"><br>
         <input type="text" name="content" value="${read.content}"><br>
@@ -22,7 +22,7 @@
         <input type="text" name="enddate" value="${read.endDate}" readonly><br>
         <input type="number" name="priority" value="${read.priority}"><br>
         <input type="submit" value="수정">
-        <a href="../../todo/delete?seq=${read.seq }">삭제</a>
+        <a href="/todo/delete?seq=${read.seq }">삭제</a>
         </form>
         </c:if>
         <c:if test="${read == null}">

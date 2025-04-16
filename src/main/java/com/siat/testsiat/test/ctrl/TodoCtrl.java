@@ -66,7 +66,7 @@ public class TodoCtrl {
     }
     // Endpoint URL : http://localhost:8088/todo/delete/1
     @GetMapping("/delete")
-    public String delete(@RequestParam int seq) {
+    public String delete(@RequestParam("seq") int seq) {
         System.out.println("debug Todo ctrl /delete/{seq} " + seq);
         int flag = Service.deleteService(seq);
         if (flag != 0) {
@@ -77,11 +77,11 @@ public class TodoCtrl {
     }
     // Endpoint URL : http://localhost:8088/todo/update
     @PostMapping("/update")
-    public String update(@RequestParam String title,
-                         @RequestParam String content,
-                         @RequestParam String status,
-                         @RequestParam int seq,
-                         @RequestParam int priority) {
+    public String update(@RequestParam("title") String title,
+                         @RequestParam("content") String content,
+                         @RequestParam("status") String status,
+                         @RequestParam("seq") int seq,
+                         @RequestParam("priority") int priority) {
         System.out.println("debug Todo ctrl /update " + title + " " + content + " " + status + " " + seq);
         Map<String, Object> map= new HashMap<>();
         map.put("title", title);
