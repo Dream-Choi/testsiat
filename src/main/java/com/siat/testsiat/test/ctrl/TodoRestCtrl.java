@@ -20,7 +20,17 @@ import com.siat.testsiat.test.model.dto.TodoRequestDTO;
 import com.siat.testsiat.test.model.dto.TodoResponseDTO;
 import com.siat.testsiat.test.service.TestService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
+//API endpoint가 어떤 그룹에 속하는지를 알려주는 그룹핑 어노테이션
+@Tag(name = "Todo API", description = "Todo 컨트롤러에 대한 설명입니다.")
 public class TodoRestCtrl {
   @RequestMapping("/todo")
 public class TodoCtrl {
@@ -36,7 +46,15 @@ public class TodoCtrl {
     }
     // Endpoint URL : http://localhost:8088/todo/insert
     @PostMapping("/insert")
-    public ResponseEntity<String> insert(TodoRequestDTO params) {
+    @Operation(summary = "입력", description = "파라미터로 전달받은 정보를 저장합니다.")
+    @Parameter(name= "title", description = "제목")
+    @Parameter(name= "content", description = "내용")
+    @Parameter(name= "status", description = "상태")
+    @Parameter(name= "priority", description = "우선순위")
+    @ApiResponse(responseCode = "200", description = "정상처리")
+    @ApiResponse(responseCode = "501", description = "처리실패",
+            content = @Content(schema = @Schema(implementation = TodoResponseDTO.class)))
+    public ResponseEntity<String> insert(@RequestBody TodoRequestDTO params) {
         System.out.println("debug Todo ctrl /insert: " + params);
         int flag = Service.insertService(params);
         if (flag != 0) {
