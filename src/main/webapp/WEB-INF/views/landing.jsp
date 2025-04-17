@@ -14,7 +14,7 @@
         <hr>
         <div align="right">
         <c:if test="${UserSession == null}">
-        	<form action="./login.todo" method="post">
+        	<form action="./user/login" method="post">
         	아이디 : <input type="text" name="id" placeholder="아이디입력"><br>
         	비밀번호 : <input type="password" name="pwd" placeholder="패스워드입력"><br>
         	<input type="submit" value="로그인">
@@ -22,7 +22,7 @@
         	</c:if>
         <c:if test="${UserSession != null}">
             ${UserSession.name}님 환영합니다.
-            <a href="./logout.todo">로그아웃</a>
+            <a href="./user/logout">로그아웃</a>
             </c:if>
         	</div>
         	<hr>

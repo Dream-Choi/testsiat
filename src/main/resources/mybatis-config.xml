@@ -4,6 +4,8 @@
     <typeAliases>
         <typeAlias alias="TodoRequestDTO" type="com.siat.testsiat.test.model.dto.TodoRequestDTO"/>
         <typeAlias alias="TodoResponseDTO" type="com.siat.testsiat.test.model.dto.TodoResponseDTO"/>
+        <typeAlias alias="UserResponseDTO" type="com.siat.testsiat.user.model.domain.UserResponseDTO"/>
+        <typeAlias alias="UserRequestDTO" type="com.siat.testsiat.user.model.domain.UserRequestDTO"/>
     </typeAliases>
 
 </configuration>
