@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.siat.testsiat.test.model.dto.TodoRequestDTO;
-import com.siat.testsiat.test.service.TestService;
+import com.siat.testsiat.valid.service.ValidService;
 
 import jakarta.validation.Valid;
 
@@ -24,7 +24,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/valid")
 public class ValidTodoCtrl {
     @Autowired
-    private TestService Service;
+    private ValidService Service;
 
     @PostMapping("/insert")
     public String insert(@Valid TodoRequestDTO params, BindingResult bindResult, Model model) {
@@ -42,6 +42,7 @@ public class ValidTodoCtrl {
             model.addAttribute("ValidError", map);
             return "register";
         } else{
+            System.out.println("debug Todo ctrl /insert: " + params);
             int flag = Service.insertService(params);
         }
         return null;

@@ -23,6 +23,8 @@ public class ValidService {
                 .priority(params.getPriority())
                 .build();
         dao.save(entity);
+        /////
+        dao.findAll();
         return 1;
     }
 }

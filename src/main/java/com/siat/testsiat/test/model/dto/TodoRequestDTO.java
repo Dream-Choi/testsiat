@@ -1,6 +1,8 @@
 package com.siat.testsiat.test.model.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -43,6 +45,7 @@ public class TodoRequestDTO {
     private String startDate;
     private String status;
     private String endDate;
-    @Size(min = 1, max = 10, message = "우선순위는 1~10까지 입력 가능합니다.")
+    @Min(value = 1, message = "우선순위는 1 이상이어야 합니다.")
+    @Max(value = 10, message = "우선순위는 10 이하여야 합니다.")
     private int priority;
 }
