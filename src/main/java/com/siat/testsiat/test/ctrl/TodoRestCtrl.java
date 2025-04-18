@@ -31,9 +31,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 //API endpoint가 어떤 그룹에 속하는지를 알려주는 그룹핑 어노테이션
 @Tag(name = "Todo API", description = "Todo 컨트롤러에 대한 설명입니다.")
+@RequestMapping("/todo")
 public class TodoRestCtrl {
-  @RequestMapping("/todo")
-public class TodoCtrl {
     @Autowired
     private TestService Service;
     // 데이터를 전달받는 ANNOTATION
@@ -114,6 +113,5 @@ public class TodoCtrl {
         System.out.println("debug Todo ctrl /select");
         List<TodoResponseDTO> list = Service.selectListService();
         return new ResponseEntity<List<TodoResponseDTO>>(list, HttpStatus.OK);
-    }  
-}
+    }
 }

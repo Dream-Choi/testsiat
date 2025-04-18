@@ -33,6 +33,9 @@ dependencies {
 	
 	// swagger + spring 3.x 
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
