@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 //API endpoint가 어떤 그룹에 속하는지를 알려주는 그룹핑 어노테이션
 @Tag(name = "Todo API", description = "Todo 컨트롤러에 대한 설명입니다.")
-@RequestMapping("/todo")
+@RequestMapping("/rest/todo")
 public class TodoRestCtrl {
     @Autowired
     private TestService Service;
@@ -39,10 +39,13 @@ public class TodoRestCtrl {
     // @RequestParam : URL에서 전달받는 데이터
     // @PathValues : URL에서 전달받는 데이터
     @GetMapping("/registerForm")
-    public String form() {
+    @Operation(summary = "등록 폼", description = "등록 페이지로 이동합니다.")
+    @ApiResponse(responseCode = "200", description = "성공")
+    public ResponseEntity<String> form() {
         System.out.println("debug Todo ctrl /registerForm");
-        return "register";
+        return new ResponseEntity<>("register", HttpStatus.OK);
     }
+    
     // Endpoint URL : http://localhost:8088/todo/insert
     @PostMapping("/insert")
     @Operation(summary = "입력", description = "파라미터로 전달받은 정보를 저장합니다.")
