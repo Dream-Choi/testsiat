@@ -34,7 +34,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RequestMapping("/rest/todo")
 public class TodoRestCtrl {
     @Autowired
-    private TestService Service;
+    private TestService service;
     // 데이터를 전달받는 ANNOTATION
     // @RequestParam : URL에서 전달받는 데이터
     // @PathValues : URL에서 전달받는 데이터
@@ -58,7 +58,7 @@ public class TodoRestCtrl {
             content = @Content(schema = @Schema(implementation = TodoResponseDTO.class)))
     public ResponseEntity<String> insert(@RequestBody TodoRequestDTO params) {
         System.out.println("debug Todo ctrl /insert: " + params);
-        int flag = Service.insertService(params);
+        int flag = service.insertService(params);
         if (flag != 0) {
             return new ResponseEntity<>("정상처리", HttpStatus.OK);
         }
@@ -68,21 +68,21 @@ public class TodoRestCtrl {
     @GetMapping("/read")
     public ResponseEntity<TodoResponseDTO> read(@RequestParam("seq") int seq) {
         System.out.println("debug Todo ctrl /read: " + seq);
-        TodoResponseDTO response = Service.selectService(seq);
+        TodoResponseDTO response = service.selectService(seq);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     // Endpoint URL : http://localhost:8088/todo/view/1
     @GetMapping("/view/{seq}")
     public ResponseEntity<TodoResponseDTO> view(@PathVariable("seq") int seq) {
         System.out.println("debug Todo ctrl /view/{seq} " + seq);
-        TodoResponseDTO response = Service.selectService(seq);
+        TodoResponseDTO response = service.selectService(seq);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
     // Endpoint URL : http://localhost:8088/todo/delete/1
     @DeleteMapping("/delete")
     public ResponseEntity<Void> delete(@RequestParam("seq") int seq) {
         System.out.println("debug Todo ctrl /delete?seq=" + seq);
-        int flag = Service.deleteService(seq);
+        int flag = service.deleteService(seq);
         if (flag != 0) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
@@ -103,7 +103,7 @@ public class TodoRestCtrl {
         map.put("status", status);
         map.put("seq", seq);
         map.put("priority", priority);
-        int flag = Service.updateService(map);
+        int flag = service.updateService(map);
         if (flag != 0) {
             return new ResponseEntity<>("정상처리", HttpStatus.OK);
         } else {
@@ -114,7 +114,7 @@ public class TodoRestCtrl {
     @GetMapping("/select")
     public ResponseEntity<List<TodoResponseDTO>> select() {
         System.out.println("debug Todo ctrl /select");
-        List<TodoResponseDTO> list = Service.selectListService();
+        List<TodoResponseDTO> list = service.selectListService();
         return new ResponseEntity<List<TodoResponseDTO>>(list, HttpStatus.OK);
     }
 }
