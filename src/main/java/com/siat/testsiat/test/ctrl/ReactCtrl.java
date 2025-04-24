@@ -55,4 +55,16 @@ public class ReactCtrl {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/view/{seq}")
+    public ResponseEntity<TodoResponseDTO> view(@PathVariable("seq") int seq) {
+        System.out.println("debug Todo ctrl /view/{seq} " + seq);
+        TodoResponseDTO response = service.selectService(seq);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @GetMapping("/read")
+    public ResponseEntity<TodoResponseDTO> read(@PathVariable("seq") int seq) {
+        System.out.println("debug Todo ctrl /read: " + seq);
+        TodoResponseDTO response = service.selectService(seq);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }
